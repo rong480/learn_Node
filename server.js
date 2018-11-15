@@ -45,10 +45,13 @@
 var http = require("http");
 var url = require("url");
 
-function start () {
+function start (route) {
 	function onRequest(request, response) {
 		var pathname = url.parse(request.url).pathname;
 		console.log('pathname:' + pathname);
+
+		route(pathname);
+
 		response.writeHead(200, {'Content-Type':'text/plain'});
 		response.write('hello 333');
 		response.end();
